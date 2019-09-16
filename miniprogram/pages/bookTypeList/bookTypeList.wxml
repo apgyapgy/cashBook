@@ -1,0 +1,17 @@
+<view class="amt_type_wrapper">
+  <text class="amt_type first {{amtType==0?'active':''}}" catchtap="setAmtType" data-type="0">支出</text>
+  <text class="amt_type {{amtType==1?'active':''}}" catchtap="setAmtType" data-type="1">收入</text>
+</view>
+<view class="book_type_list_wrapper clearfix">
+  <view class="book_type_list {{deleteBtnIdx==idx?'active':''}}" wx:for="{{bookTypeList}}" wx:for-index="idx" wx:key="{{idx}}">
+    <text class="delete_icon" catchtap="showDeleteBtn" data-idx="{{idx}}"></text>
+    <view class="icon_wrapper">
+      <image src="{{'/utils/icons/'+item.icon+'.png'}}"></image>
+    </view>
+    <text class="book_type_name" catchtap="hideDeleteBtn">{{item.name}}</text>
+    <text class="drag_icon">三</text>
+    <text class="book_type_delete" catchtap="deleteBookType" data-idx="{{idx}}">删除</text>
+  </view>
+</view>
+<!-- 添加类别 -->
+<text catchtap="addBookType" class="add_booktype_btn">+添加类别</text>

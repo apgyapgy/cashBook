@@ -1,0 +1,4 @@
+
+
+<import src="/components/footer.wxml"/>
+<template is="footer" data="{{footerIndex}}"></template>

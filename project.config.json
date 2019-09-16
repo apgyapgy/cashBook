@@ -1,0 +1,73 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"enhance": true
+	},
+	"appid": "wxde2096ba68f45031",
+	"projectname": "%E8%AE%B0%E8%B4%A6%E6%9C%AC",
+	"libVersion": "2.8.1",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "添加类型",
+					"pathName": "pages/addBookType/addBookType",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "类型列表",
+					"pathName": "pages/bookTypeList/bookTypeList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "添加账单",
+					"pathName": "pages/addBook/addBook",
+					"query": "id=5d262bd45d7f41e91c24ee2650001f6a&type=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

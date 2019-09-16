@@ -1,0 +1,8 @@
+cloudfunctions/getChartData/node_modules/
+cloudfunctions/getBookType/node_modules/
+cloudfunctions/getChartDetailData/node_modules/
+cloudfunctions/editBook/node_modules/
+cloudfunctions/deleteBookType/node_modules/
+cloudfunctions/getUserBookList/node_modules/
+cloudfunctions/addBookType/node_modules/
+cloudfunctions/addBook/node_modules/
