@@ -6,7 +6,14 @@
     clear: both;
     height: 0;
 }
+view,text,image{
+  box-sizing:border-box;
+}
 /* 底部 */
+.padding_100{
+  width:100%;
+  height:100rpx;
+}
 .footer_wrapper{
   position:fixed;
   left:0;

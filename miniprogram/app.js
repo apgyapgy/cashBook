@@ -78,7 +78,7 @@ App({
       url: url,
     });
   },
-  getDateInfo(dateStr){
+  getDateInfo(dateStr){//获取日期的年月日星期，无dateStr默认获取今天的
     let date;
     if (dateStr){
       date = new Date(dateStr);
@@ -92,8 +92,12 @@ App({
       week:date.getDay()
     }
   },
-  changeFooter(e){
+  changeFooter(e){//点击底部按钮
     let url = e.currentTarget.dataset.url;
-    this.relaunch(`/pages/${url}/${url}`);
+    if(e.currentTarget.dataset.method){
+      this.navigate(`/pages/${url}/${url}`);
+    }else{
+      this.relaunch(`/pages/${url}/${url}`);
+    }
   }
 })

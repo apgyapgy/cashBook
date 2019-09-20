@@ -15,6 +15,6 @@ exports.main = async (event, context) => {
     bookMonth:event.bookMonth,
     bookYear:event.bookYear
   };
-  params._openid = event.userInfo.openId;
+  params.openid = event.userInfo.openId;
   return await db.collection('bookList').where(params).orderBy('bookDate','desc').get();
 }

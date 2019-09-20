@@ -11,6 +11,8 @@ Page({
     today:'',//今天日期
     selectDay:'',//选择的日期
     editFlag:false,//未修改
+    remarkArr:{},//备注列表
+    selectTypeRemarks:[],//选中类型的remark列表
   },
   onLoad: function (options) {
     this.initDate();
@@ -19,8 +21,8 @@ Page({
         bookId:options.id,
         activeTab:options.tab
       });
-      
     }
+    this.getRemarkArr();
   },
   onShow: function () {
     if(this.data.bookId){
@@ -89,11 +91,23 @@ Page({
   },
   selectBookType(e){//选中类型
     let type = e.currentTarget.dataset.idx;
-    if(type == this.data.activeType){
+    let remarkArr = this.data.remarkArr;
+      let data = this.data;
+    if(type == data.activeType){
       type = -1;
+      remarkArr = [];
+    }else{
+      remarkArr = remarkArr[data.bookTypeList[type]._id] ? remarkArr[data.bookTypeList[type]._id]:[]
     }
+    console.log("remarkArr:",remarkArr)
     this.setData({
-      activeType:type
+      activeType:type,
+      selectTypeRemarks:remarkArr
+    });
+  },
+  setRemarkByTip(e){//选中提示的备注
+    this.setData({
+      remark: e.currentTarget.dataset.remark
     });
   },
   getActiveType(id){//获取选中类型的索引
@@ -118,6 +132,16 @@ Page({
       this.initData();
     }
   },
+  getRemarkArr(){//获取缓存的remark
+    var remarkArr = wx.getStorageSync('remarks');
+    if(!remarkArr){
+      remarkArr = '{}';
+    }
+    this.setData({
+      remarkArr: JSON.parse(remarkArr)
+    });
+    console.log("getRemarkArr:", this.data.remarkArr)
+  },
   saveBook(){//保存
     let _this = this;
     let data = this.data;
@@ -138,6 +162,24 @@ Page({
       bookTypeIcon: bookType.icon,
       bookTypeId: bookType._id
     }
+    if (data.remark) {
+      let remarkArr = this.data.remarkArr;
+      if (remarkArr[bookType._id]){
+        if (remarkArr[bookType._id].indexOf(data.remark) == -1) {
+          remarkArr[bookType._id].push(data.remark);
+          this.setData({
+            remarkArr:remarkArr
+          });
+          _this.setStorage('remarks', remarkArr);
+        }
+      }else{
+        remarkArr[bookType._id] = [data.remark];
+        this.setData({
+          remarkArr: remarkArr
+        });
+        _this.setStorage('remarks', remarkArr);
+      }
+    }
     if(this.data.bookId){
       params.id = this.data.bookId;
       app.getAjax({
@@ -145,9 +187,9 @@ Page({
         params:params,
         success(res){
           console.log("editBook:",res);
-          app.showModal('修改成功!',()=>{
+          // app.showModal('修改成功!',()=>{
             wx.navigateBack();
-          });
+          // });
         }
       });
     }else{
@@ -156,9 +198,9 @@ Page({
         params:params,
         success(res){
           console.log("addBook:",res);
-          app.showModal('添加成功!',()=>{
+          // app.showModal('添加成功!',()=>{
             wx.navigateBack();
-          });
+          // });
         },
         fail(res){
           console.log("addBookFail:",res);
@@ -166,6 +208,12 @@ Page({
         }
       });
     }
+  },
+  setStorage(name,value){
+    wx.setStorage({
+      key: name,
+      data: JSON.stringify(value)
+    });
   },
   setRemark(e){//设置备注
     this.setData({
@@ -240,6 +288,6 @@ Page({
     });
   },
   setBookTypeList(){//点击设置按钮
-    app.navigate('/pages/bookTypeList/bookTypeList');
+    app.navigate('/pages/bookTypeList/bookTypeList?type=' + this.data.activeTab);
   }
 })

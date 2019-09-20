@@ -19,6 +19,11 @@
   </view>
 </view>
 <view hidden="{{activeType == -1}}" class="keyboard_wrapper">
+  <scroll-view hidden="{{selectTypeRemarks.length==0}}" class="remark_tips">
+    <text>推荐：</text>
+    <text class="remark_tip" catchtap="setRemarkByTip" data-remark="{{item}}"
+      wx:for="{{selectTypeRemarks}}" wx:for-index="idx" wx:key="{{idx}}">{{item}}</text>
+  </scroll-view>
   <view class="keyboard_top">
     <view class="keyboard_remark">
       <image src="/utils/icons/icon_168.png"></image>

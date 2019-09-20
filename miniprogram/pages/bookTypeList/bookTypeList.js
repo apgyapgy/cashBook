@@ -6,7 +6,11 @@ Page({
     deleteBtnIdx:-1,//显示删除按钮的索引
   },
   onLoad: function (options) {
-    
+    if(options.type){
+      this.setData({
+        amtType:options.type
+      });
+    }
   },
   onShow(){
     this.getBookList();
