@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -72,6 +72,13 @@
 					"name": "账单详情",
 					"pathName": "pages/bookDetail/bookDetail",
 					"query": "id=075734515d81f9440014cf75140c9676",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "图表",
+					"pathName": "pages/chart/chart",
+					"query": "",
 					"scene": null
 				}
 			]
