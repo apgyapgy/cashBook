@@ -14,16 +14,13 @@ exports.main = async (event, context) => {
   return await db.collection('bookList').aggregate().match({
     openid: event.userInfo.openId,
     amtType: event.amtType,
-    // bookDate: $.and([$.gte(['$bookDate', event.beginTime]), $.lte(['$bookDate', event.endTime])])
-    // bookDate: $.gte(event.beginTime)//.and(_.lte(event.endTime))
     bookYear:event.year,
-    bookMonth:event.month
-    // bookDate: { $gte: event.beginTime, $lte: event.endTime }
+    bookMonth: { $gte: event.beginMonth, $lte: event.endMonth }
   }).group({
     _id: {
       bookTypeName: '$bookTypeName',
-      bookIcon: '$bookIcon',
-      bookType:'$bookType'
+      bookTypeIcon: '$bookTypeIcon',
+      bookTypeId:'$bookTypeId'
     },
     count: $.sum('$bookAmt')
   }).end();

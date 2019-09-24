@@ -10,18 +10,15 @@ const db = cloud.database();
 const _ = db.command;
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext();
-  // const params = {
-  //   bookMonth: event.bookMonth,
-  //   bookYear: event.bookYear
-  // };
+  // return event;
   const params = {
-    bookDate:_.gte(event.beginTime).and(_.lt(event.endTime)),
-    amtType: event.amtType,
-    bookType:event.bookType
+    bookMonth:_.gte(event.beginMonth-0).and(_.lte(event.endMonth-0)),
+    bookYear: event.year-0,
+    bookTypeId:event.id
   };
-  params._openid = event.userInfo.openId;
+  params.openid = event.userInfo.openId;
+  // return params;
   return await db.collection('bookList').where(params)
-  .orderBy('bookDate', 'desc')
+  .orderBy('bookMonth', 'desc')
   .get();
 }

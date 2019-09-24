@@ -6,6 +6,14 @@
   height:180rpx;
   background:#ffd700;
 }
+.book_type_name{
+  width:100%;
+  height:80rpx;
+  line-height:80rpx;
+  font-size:30rpx;
+  text-align:center;
+  font-weight:bold;
+}
 .amttype_picker{
   position:relative;
   margin:0 auto;
@@ -71,11 +79,17 @@
 }
 .book_list_img_wrapper{
   float:left;
+  padding:10rpx;
   margin:20rpx;
   width:60rpx;
   height:60rpx;
   border-radius:50%;
   background:#eee;
+}
+.book_list_img_wrapper image{
+  display:block;
+  width:40rpx;
+  height:40rpx;
 }
 .book_list_item_info{
   float:left;

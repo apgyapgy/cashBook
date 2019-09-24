@@ -12,7 +12,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffd700",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "记账本",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
