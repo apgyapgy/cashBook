@@ -6,8 +6,11 @@ Page({
     amtType:'0',//0支出，1收入
     amtTypeArr:['支出','收入'],
     dateType:1,//时间范围1月，2年
+    dateTypeIdx:0,//选中的月或年的idx
     chartList:[],
     chartListCount:0,
+    yearArr: ['2019','2018'],
+    monthArr: [12,11,10,9,8,7,6,5,4,3,2,1],
     year:'',
     beginMonth:'',
     endMonth:''
@@ -28,7 +31,9 @@ Page({
       this.setData({
         year:year,
         beginMonth:month,
-        endMonth:month
+        endMonth:month,
+        monthArr:this.data.monthArr.slice(12-month),
+        dateTypeIdx:0
       });
       this.initData();
     }
@@ -38,11 +43,14 @@ Page({
   initData(){
     let _this = this;
     let data = this.data;
+    this.setData({
+      chartList:[]
+    });
     app.getAjax({
       url:'getChartData',
       params:{
         amtType:data.amtType,
-        year: data.year,
+        year: data.year-0,
         beginMonth: data.beginMonth,
         endMonth:data.endMonth
       },
@@ -86,6 +94,28 @@ Page({
       }
     });
   },
+  cliDateRange(e){
+    let idx = e.currentTarget.dataset.idx;
+    let dateType = this.data.dateType;
+    let year,beginMonth,endMonth;
+    if(dateType == 1){//月
+      this.setData({
+        year:new Date().getFullYear(),
+        beginMonth:this.data.monthArr[idx],
+        endMonth:this.data.monthArr[idx],
+        dateTypeIdx:idx
+      });
+      this.initData();
+    }else{//年
+      this.setData({
+        dateTypeIdx:idx,
+        year:this.data.yearArr[idx],
+        beginMonth:1,
+        endMonth:12
+      });
+      this.initData();
+    }
+  },
   toChartDetail(e){
     let id = e.currentTarget.dataset.id;
     let data = this.data;
@@ -106,9 +136,24 @@ Page({
   setDateType(e){//选择日期范围
     let type = e.currentTarget.dataset.type;
     if(type != this.data.dateType){
-      this.setData({
-        dateType:type
-      });
+      let year,beginMonth,endMonth;
+      let setDatas = {};
+      if(type == 1){
+        let date = new Date();
+        setDatas.year = date.getFullYear();
+        setDatas.beginMonth = date.getMonth()+1;
+        setDatas.endMonth = date.getMonth()+1;
+        setDatas.monthArr = [12,11,10,9,8,7,6,5,4,3,2,1].slice(12-date.getMonth()+1);
+        setDatas.dateTypeIdx = 0;
+      }else{
+        setDatas.year = new Date().getFullYear();
+        setDatas.beginMonth = 1;
+        setDatas.endMonth = 12;
+        setDatas.dateTypeIdx = 0;
+      }
+      setDatas.dateType = type;
+      this.setData(setDatas);
+      this.initData();
     }
   },
   changeFooter(e) {
