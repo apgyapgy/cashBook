@@ -1,7 +1,6 @@
 //app.js
 App({
   onLaunch: function () {
-    
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -16,10 +15,9 @@ App({
         // env:'apgy-876ffd'
       })
     }
-
     this.globalData = {}
   },
-  getAjax(opts){
+  getAjax(opts){//请求接口
     wx.showLoading({
       title: '加载中',
       mask:true,
@@ -45,7 +43,7 @@ App({
       }
     });
   },
-  showModal(content,success,fail){
+  showModal(content,success,fail){//显示对话框
     wx.showModal({
       title: '提示',
       content: content,
@@ -63,17 +61,17 @@ App({
       }
     });
   },
-  navigate(url){
+  navigate(url){//跳转
     wx.navigateTo({
       url: url,
     });
   },
-  relaunch(url){
+  relaunch(url) {//跳转
     wx.reLaunch({
       url:url
     });
   },
-  redirect(url){
+  redirect(url) {//跳转
     wx.redirectTo({
       url: url,
     });
@@ -99,5 +97,8 @@ App({
     }else{
       this.relaunch(`/pages/${url}/${url}`);
     }
+  },
+  globalData:{
+    plan:{}
   }
 })

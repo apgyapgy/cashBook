@@ -2,8 +2,8 @@
 const cloud = require('wx-server-sdk')
 cloud.init({
   traceUser: true,
-  env: 'test-gp4ml'
-  // env:'apgy-876ffd'
+  // env: 'test-gp4ml'
+  env:'apgy-876ffd'
 });
 const db = cloud.database()
 // 云函数入口函数
@@ -13,6 +13,8 @@ exports.main = async (event, context) => {
     let data = event;
     data.openid = event.userInfo.openId;
     delete event.userInfo;
+    let date = new Date(new Date().getTime() + 28800000);
+    event.crtTs = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     return await db.collection('bookList').add({
       data: data
     });

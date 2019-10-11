@@ -1,8 +1,8 @@
-// 云函数入口文件
+// 添加计划类型
 const cloud = require('wx-server-sdk');
 cloud.init({
-  traceUser:true,
-  // env:'test-gp4ml'
+  traceUser: true,
+  // env: 'test-gp4ml'
   env:'apgy-876ffd'
 });
 const db = cloud.database();
@@ -10,7 +10,7 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   event.user = event.userInfo.openId;
   delete event.userInfo;
-  return await db.collection('bookType').add({
-    data:event
-  })
+  return await db.collection('planList').add({
+    data: event
+  });
 }

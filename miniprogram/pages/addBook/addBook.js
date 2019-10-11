@@ -6,6 +6,9 @@ Page({
     bookId:'',
     bookTypeId:'',
     bookTypeList:[],//类型列表
+    planList:[],//计划列表
+    planListNameArr:[],//计划名称列表
+    planIdx:0,//当前选中的计划序号
     remark:'',//备注
     amt:'0.00',
     today:'',//今天日期
@@ -29,6 +32,7 @@ Page({
       this.getBookDetail(this.data.bookId);
     }
     this.initData();
+    this.getPlanList();
   },
   initData(){//获取类型列表
     let _this = this;
@@ -50,7 +54,32 @@ Page({
       }
     });
   },
-  getBookDetail(id){
+  getPlanList() {//获取计划列表
+    let _this = this;
+    app.getAjax({
+      url: 'getPlanList',
+      params: {
+        type: _this.data.activeTab
+      },
+      success(res) {
+        console.log("getPlanList:", res);
+        let planList = res.result.data ? res.result.data:[];
+        planList.unshift({
+          name:'选择计划',
+          _id:''
+        });
+        let planListNameArr = [];
+        for(var key in planList){
+          planListNameArr.push(planList[key].name);
+        }
+        _this.setData({
+          planList: planList,
+          planListNameArr: planListNameArr
+        });
+      }
+    });
+  },
+  getBookDetail(id){//获取账单记录详情
     let _this = this;
     app.getAjax({
       url:'getBookDetail',
@@ -99,7 +128,6 @@ Page({
     }else{
       remarkArr = remarkArr[data.bookTypeList[type]._id] ? remarkArr[data.bookTypeList[type]._id]:[]
     }
-    console.log("remarkArr:",remarkArr)
     this.setData({
       activeType:type,
       selectTypeRemarks:remarkArr
@@ -130,6 +158,7 @@ Page({
         activeType:-1
       });
       this.initData();
+      this.getPlanList();
     }
   },
   getRemarkArr(){//获取缓存的remark
@@ -160,7 +189,8 @@ Page({
       remark:data.remark,
       bookTypeName: bookType.name,
       bookTypeIcon: bookType.icon,
-      bookTypeId: bookType._id
+      bookTypeId: bookType._id,
+      planId:data.planList[data.planIdx]._id
     }
     if (data.remark) {
       let remarkArr = this.data.remarkArr;
@@ -187,9 +217,7 @@ Page({
         params:params,
         success(res){
           console.log("editBook:",res);
-          // app.showModal('修改成功!',()=>{
-            wx.navigateBack();
-          // });
+          wx.navigateBack();
         }
       });
     }else{
@@ -289,5 +317,14 @@ Page({
   },
   setBookTypeList(){//点击设置按钮
     app.navigate('/pages/bookTypeList/bookTypeList?type=' + this.data.activeTab);
+  },
+  addPlan(){//添加计划
+    app.navigate(`/pages/addBookType/addBookType?ptype=1&type=${this.data.activeTab}`);
+  },
+  selectPlan(e){//选择计划
+    console.log("selectPlan:",e);
+    this.setData({
+      planIdx:e.detail.value
+    });
   }
 })

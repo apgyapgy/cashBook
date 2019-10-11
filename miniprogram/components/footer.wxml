@@ -19,7 +19,7 @@
       </view>
       <text>记账</text>
     </view>
-    <view class="footer_item {{footerIndex==3?'active':''}}" catchtap="changeFooter" data-type="my">
+    <view class="footer_item {{footerIndex==3?'active':''}}" catchtap="changeFooter" data-url="my" data-type="my">
       <view class="footer_image_wrapper">
         <image src="/utils/icons/icon_172.png"></image>
       </view>

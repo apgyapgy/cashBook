@@ -14,6 +14,7 @@
 	"libVersion": "2.8.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -31,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -43,7 +44,7 @@
 					"id": 1,
 					"name": "添加类型",
 					"pathName": "pages/addBookType/addBookType",
-					"query": "",
+					"query": "ptype=1",
 					"scene": null
 				},
 				{
@@ -78,6 +79,20 @@
 					"id": -1,
 					"name": "图表",
 					"pathName": "pages/chart/chart",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "计划列表",
+					"pathName": "pages/planList/planList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/my",
 					"query": "",
 					"scene": null
 				}

@@ -48,11 +48,17 @@
     <view catchtap="setAmt" data-val="4" class="keyboard_item">4</view>
     <view catchtap="setAmt" data-val="5" class="keyboard_item">5</view>
     <view catchtap="setAmt" data-val="6" class="keyboard_item">6</view>
-    <view class="keyboard_item">+</view>
+    <view catchtap="addPlan" class="keyboard_item plan">新增计划</view>
     <view catchtap="setAmt" data-val="1" class="keyboard_item">1</view>
     <view catchtap="setAmt" data-val="2" class="keyboard_item">2</view>
     <view catchtap="setAmt" data-val="3" class="keyboard_item">3</view>
-    <view class="keyboard_item">-</view>
+    <view class="keyboard_item plan">
+      <picker bindchange="selectPlan" value="planListNameArr[planIdx]" range="{{planListNameArr}}">
+        <view class="picker">
+          {{planListNameArr[planIdx]}}
+        </view>
+      </picker>
+    </view>
     <view catchtap="setAmt" data-val="." class="keyboard_item">.</view>
     <view catchtap="setAmt" data-val="0" class="keyboard_item">0</view>
     <view catchtap="delAmt" class="keyboard_item del">

@@ -3,8 +3,8 @@ const cloud = require('wx-server-sdk')
 
 cloud.init({
   traceUser: true,
-  env: 'test-gp4ml'
-  // env:'apgy-876ffd'
+  // env: 'test-gp4ml'
+  env:'apgy-876ffd'
 });
 const db = cloud.database();
 const $ = db.command.aggregate;

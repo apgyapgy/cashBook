@@ -7,3 +7,4 @@ cloudfunctions/getUserBookList/node_modules/
 cloudfunctions/addBookType/node_modules/
 cloudfunctions/addBook/node_modules/
 cloudfunctions/deleteBook/node_modules/
+cloudfunctions/addPlanList/node_modules/

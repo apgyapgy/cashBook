@@ -55,7 +55,7 @@
 }
 .tabs_wrapper text{
   width:100rpx;
-  height:76rpx;
+  height:80rpx;
   line-height:80rpx;
   font-size:30rpx;
   text-align:center;
@@ -143,17 +143,20 @@
 .keyboard_item.btn{
   background:#ffd700;
 }
+.keyboard_item.plan{
+  font-size:24rpx;
+}
 .remark_tips{
   position:absolute;
   left:0;
-  top:-80rpx;
+  top:-60rpx;
   padding:0 20rpx;
   box-sizing:border-box;
   width:100%;
-  height:80rpx;
-  line-height:80rpx;
+  height:60rpx;
+  line-height:60rpx;
   font-size:30rpx;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.3);
 }
 .remark_tips text{
   float:left;
@@ -161,11 +164,11 @@
   color:#fff;
 }
 .remark_tips .remark_tip{
-  margin-top:15rpx;
+  margin-top:10rpx;
   padding-left:20rpx;
   padding-right:20rpx;
-  height:50rpx;
-  line-height:50rpx;
+  height:40rpx;
+  line-height:40rpx;
   font-size:24rpx;
   background:#fff;
   color:#000;

@@ -1,5 +1,5 @@
-// 云函数入口文件
-const cloud = require('wx-server-sdk');
+// 获取计划的账单详情
+const cloud = require('wx-server-sdk')
 
 cloud.init({
   traceUser: true,
@@ -11,6 +11,7 @@ cloud.init({
 const db = cloud.database();
 exports.main = async (event, context) => {
   return await db.collection('bookList').where({
-    _id:event.id
+    openid:event.userInfo.openId,
+    planId:event.planId
   }).get();
 }

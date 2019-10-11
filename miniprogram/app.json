@@ -5,8 +5,10 @@
     "pages/bookTypeList/bookTypeList",
     "pages/addBook/addBook",
     "pages/chart/chart",
+    "pages/planList/planList",
+    "pages/bookDetail/bookDetail",
     "pages/my/my",
-    "pages/bookDetail/bookDetail"
+    "pages/planBookList/planBookList"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

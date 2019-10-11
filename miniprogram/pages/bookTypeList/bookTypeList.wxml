@@ -1,7 +1,5 @@
-<view class="amt_type_wrapper">
-  <text class="amt_type first {{amtType==0?'active':''}}" catchtap="setAmtType" data-type="0">支出</text>
-  <text class="amt_type {{amtType==1?'active':''}}" catchtap="setAmtType" data-type="1">收入</text>
-</view>
+<import src="/components/amtType.wxml"/>
+<template is="amtType" data="{{amtType}}"></template>
 <view class="book_type_list_wrapper clearfix">
   <view class="book_type_list {{deleteBtnIdx==idx?'active':''}}" wx:for="{{bookTypeList}}" wx:for-index="idx" wx:key="{{idx}}">
     <text class="delete_icon" catchtap="showDeleteBtn" data-idx="{{idx}}"></text>
