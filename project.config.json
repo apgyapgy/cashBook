@@ -31,8 +31,12 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -58,7 +62,7 @@
 					"id": 3,
 					"name": "添加账单",
 					"pathName": "pages/addBook/addBook",
-					"query": "id=5d262bd45d7f41e91c24ee2650001f6a&type=0",
+					"query": "id=7799745c5def45c201eb90f5355f3c20&tab=0",
 					"scene": null
 				},
 				{
@@ -93,6 +97,13 @@
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/test/test",
 					"query": "",
 					"scene": null
 				}

@@ -70,7 +70,7 @@ Page({
     return{
       sortData:sortData,
       incomeAmt: parseInt(incomeAmt*100)/100,
-      payAmt: parseInt(payAmt*100/100)
+      payAmt: parseInt(payAmt * 100) / 100
     }
   },
   toBookDetail(e){//去账单详情页

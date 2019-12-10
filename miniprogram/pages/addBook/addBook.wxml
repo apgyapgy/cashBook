@@ -53,9 +53,9 @@
     <view catchtap="setAmt" data-val="2" class="keyboard_item">2</view>
     <view catchtap="setAmt" data-val="3" class="keyboard_item">3</view>
     <view class="keyboard_item plan">
-      <picker bindchange="selectPlan" value="planListNameArr[planIdx]" range="{{planListNameArr}}">
+      <picker bindchange="selectPlan" value="planList[planIdx]" range="{{planList}}" range-key="name">
         <view class="picker">
-          {{planListNameArr[planIdx]}}
+          {{planList[planIdx].name}}
         </view>
       </picker>
     </view>

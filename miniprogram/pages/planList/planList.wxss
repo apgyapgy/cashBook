@@ -64,7 +64,7 @@
 }
 .drag_icon{
   float:left;
-  width:60rpx;
+  width:64rpx;
   height:80rpx;
   line-height:80rpx;
   font-size:40rpx;

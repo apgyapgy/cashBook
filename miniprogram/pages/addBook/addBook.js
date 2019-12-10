@@ -7,8 +7,8 @@ Page({
     bookTypeId:'',
     bookTypeList:[],//类型列表
     planList:[],//计划列表
-    planListNameArr:[],//计划名称列表
     planIdx:0,//当前选中的计划序号
+    planId:'',
     remark:'',//备注
     amt:'0.00',
     today:'',//今天日期
@@ -32,7 +32,6 @@ Page({
       this.getBookDetail(this.data.bookId);
     }
     this.initData();
-    this.getPlanList();
   },
   initData(){//获取类型列表
     let _this = this;
@@ -51,6 +50,7 @@ Page({
             activeType: _this.getActiveType(_this.data.bookTypeId)
           });
         }
+        _this.getPlanList();
       }
     });
   },
@@ -62,20 +62,22 @@ Page({
         type: _this.data.activeTab
       },
       success(res) {
-        console.log("getPlanList:", res);
-        let planList = res.result.data ? res.result.data:[];
+        console.log("getPlanList:", res,_this.data.planId);
+        let planList = res.result ? res.result:[];
         planList.unshift({
           name:'选择计划',
           _id:''
         });
-        let planListNameArr = [];
-        for(var key in planList){
-          planListNameArr.push(planList[key].name);
+        let setDatas = { planList: planList};
+        if (_this.data.planId){
+          for(var key in planList){
+            if(planList[key]._id === _this.data.planId){
+              setDatas.planIdx = key;
+              break;
+            }
+          }
         }
-        _this.setData({
-          planList: planList,
-          planListNameArr: planListNameArr
-        });
+        _this.setData(setDatas);
       }
     });
   },
@@ -95,11 +97,13 @@ Page({
             amt: data.bookAmt+'',
             selectDay: data.bookYear + '-' + data.bookMonth + '-' + data.bookDate,
             remark: data.remark,
-            bookTypeId:data.bookTypeId
+            bookTypeId:data.bookTypeId,
+            planId:data.planId?data.planId:''
           };
           if(_this.data.bookTypeList.length){
             setDatas.activeType = _this.getActiveType(data.bookTypeId)
           }
+          setDatas.selectTypeRemarks = _this.getRemarkByType(data.bookTypeId);
           _this.setData(setDatas);
         }
       }
@@ -118,20 +122,23 @@ Page({
       selectDay:dateStr
     });
   },
-  selectBookType(e){//选中类型
-    let type = e.currentTarget.dataset.idx;
-    let remarkArr = this.data.remarkArr;
+  selectBookType(e,idx){//选中类型
+    let type = idx!=undefined?idx:e.currentTarget.dataset.idx;
+    let remarkArr = [];
       let data = this.data;
     if(type == data.activeType){
       type = -1;
-      remarkArr = [];
     }else{
-      remarkArr = remarkArr[data.bookTypeList[type]._id] ? remarkArr[data.bookTypeList[type]._id]:[]
+      remarkArr = this.getRemarkByType(data.bookTypeList[type]._id);
     }
     this.setData({
       activeType:type,
       selectTypeRemarks:remarkArr
     });
+  },
+  getRemarkByType(id) {//根据类型id获取相应备注
+    let remarkArr = this.data.remarkArr;
+    return remarkArr[id] ? remarkArr[id]:[];
   },
   setRemarkByTip(e){//选中提示的备注
     this.setData({
@@ -139,15 +146,12 @@ Page({
     });
   },
   getActiveType(id){//获取选中类型的索引
-    console.log("getActiveType:",id)
     let list = this.data.bookTypeList;
     for(var key in list){
       if(list[key]._id  == id){
-        console.log("getActiveType:",key)
         return key;
       }
     }
-    console.log("getActiveType:-1")
     return -1;
   },
   changeTab(e){//切换tab
@@ -158,7 +162,6 @@ Page({
         activeType:-1
       });
       this.initData();
-      this.getPlanList();
     }
   },
   getRemarkArr(){//获取缓存的remark

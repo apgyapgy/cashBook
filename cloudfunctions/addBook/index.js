@@ -14,7 +14,9 @@ exports.main = async (event, context) => {
     data.openid = event.userInfo.openId;
     delete event.userInfo;
     let date = new Date(new Date().getTime() + 28800000);
-    event.crtTs = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+    let crtTs = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    event.crtTs = crtTs;
+    event.updTs = crtTs;
     return await db.collection('bookList').add({
       data: data
     });

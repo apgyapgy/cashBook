@@ -65,7 +65,7 @@ page{
 .book_type_name{
   float:left;
   margin-left:10rpx;
-  width:510rpx;
+  width:514rpx;
   height:80rpx;
   line-height:80rpx;
   font-size:28rpx;

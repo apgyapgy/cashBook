@@ -98,6 +98,12 @@ App({
       this.relaunch(`/pages/${url}/${url}`);
     }
   },
+  rpxToPx(rpx,windowWidth){
+    return rpx / 750 * windowWidth;
+  },
+  pxToRpx(px,windowWidth){
+    return px * 750 / windowWidth;
+  },
   globalData:{
     plan:{}
   }
